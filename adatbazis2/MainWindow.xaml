@@ -1,0 +1,117 @@
+﻿<Window x:Class="adatbazis2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:adatbazis2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="552.341" Width="947.492" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <Grid x:Name="GridLogin" Visibility="Hidden" Width="900" Height="460" >
+            <TextBox x:Name="tbUsername" Height="35" Margin="394.095,121.286,327.905,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" HorizontalAlignment="Center" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+
+            </TextBox>
+            <PasswordBox x:Name="tbPassword" HorizontalAlignment="Center" Width="170" Margin="394.095,169.286,327.905,0" VerticalAlignment="Top" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <PasswordBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </PasswordBox.Background>
+            </PasswordBox>
+            <Label x:Name="lbMessege" Content="Kérlek add meg a felhasználóneved és a jelszót!" HorizontalAlignment="Center" Margin="197.264,56.742,220.318,0" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="482.418"/>
+            <Label Content="Felhasználónév:" HorizontalAlignment="Center" Margin="241.241,119.686,502.905,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Jelszó:" HorizontalAlignment="Center" Margin="251.388,161.286,574.582,0" VerticalAlignment="Top" FontSize="20"/>
+            <Button x:Name="btLogin" Content="Bejelentkezés" HorizontalAlignment="Center" Margin="359.963,236.273,382.037,0" VerticalAlignment="Top" Width="150" Height="35" Background="#FF0E17D4" Foreground="#FFFBFBFB" FontSize="20" BorderThickness="0" Click="btLogin_Click"/>
+        </Grid>
+        <Grid x:Name="GridMenu" Visibility="Hidden" Width="900" Height="460">
+            <DataGrid x:Name="dgList" Height="412" Margin="173,38,10,0" VerticalAlignment="Top" RowHeight="21" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="10" Header="#" Binding="{Binding Id}" />
+                    <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Width="100" Header="Rendszam" Binding="{Binding Renszam}" />
+                    <DataGridTextColumn Width="*" Header="Alvazszam" Binding="{Binding Alvazszam}" />
+                    <DataGridTextColumn Width="*" Header="Márka" Binding="{Binding Marka}" />
+                    <DataGridTextColumn Width="*" Header="Tipus" Binding="{Binding Tipus}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="btAdd" Content="Hozzáad" Click="btAdd_Click" HorizontalAlignment="Center" Margin="56,55,749,0" VerticalAlignment="Top" Width="95" FontSize="20" BorderThickness="0" Background="#FF0E17D4" Foreground="#FFFBFBFB"/>
+            <Button x:Name="btDelete" Content="Töröl" Click="btDelete_Click" HorizontalAlignment="Center" Margin="56,162,769,0" VerticalAlignment="Top" Width="75" FontSize="20" BorderThickness="0" Background="#FF0E17D4" Foreground="#FFFBFBFB"/>
+            <Button x:Name="btLogout" Content="Kijelentkezés" Click="btLogout_Click" HorizontalAlignment="Center" Margin="29,290,732,0" VerticalAlignment="Top" Width="139" FontSize="20" BorderThickness="0" Background="#FF0E17D4" Foreground="#FFFBFBFB"/>
+            <Button x:Name="btRefresh" Content="Frissítés" Click="btRefresh_Click" HorizontalAlignment="Center" Margin="29,216,732,0" VerticalAlignment="Top" Width="139" FontSize="20" BorderThickness="0" Background="#FF0E17D4" Foreground="#FFFBFBFB"/>
+            <Button x:Name="btModify" Content="Módosit" Click="btModify_Click" HorizontalAlignment="Center" Margin="56,104,749,0" VerticalAlignment="Top" Width="95" FontSize="20" BorderThickness="0" Background="#FF0E17D4" Foreground="#FFFBFBFB"/>
+        </Grid>
+        <Grid x:Name="GridAdd" Visibility="Hidden"  Width="900" Height="460">
+            <Label Content="Tulajdonos:" HorizontalAlignment="Center" Margin="245,29,545,0" VerticalAlignment="Top" FontSize="20" Width="110"/>
+            <Label Content="Rendszam" HorizontalAlignment="Center" Margin="255,86,545,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Alvazszam:" HorizontalAlignment="Center" Margin="255,137,535,0" VerticalAlignment="Top" FontSize="20" Width="110"/>
+            <Label Content="Tipus" HorizontalAlignment="Center" Margin="272,186,570,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Márka" HorizontalAlignment="Center" Margin="272,242,562,0" VerticalAlignment="Top" FontSize="20"/>
+            <Button x:Name="btAddcar" Content="Hozzáad" Click="btAddCar_Click" HorizontalAlignment="Center" Margin="290,355,535,0" VerticalAlignment="Top" Width="75" Background="#FF0E17D4" Foreground="#FFFBFBFB" FontSize="20" BorderThickness="0"/>
+            <Button x:Name="btCancel" Content="Mégse" Click="btCancel_Click" HorizontalAlignment="Center" Margin="459,355,366,0" VerticalAlignment="Top" Width="75" Background="#FF0E17D4" Foreground="#FFFBFBFB" FontSize="20" BorderThickness="0"/>
+            <TextBox  x:Name="tbCarTulajdonos" HorizontalAlignment="Center" Height="23" Margin="398,43,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="tbCarRendszam" HorizontalAlignment="Center" Height="23" Margin="398,100,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox  x:Name="tbCarAlvazszam" HorizontalAlignment="Center" Height="23" Margin="398,151,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="tbCarTipus" HorizontalAlignment="Center" Height="23" Margin="398,200,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="tbCarMarka" HorizontalAlignment="Center" Height="23" Margin="398,256,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+        </Grid>
+        <Grid x:Name="GriModify" Visibility="Visible"  Width="900" Height="460">
+            <Label Content="Tulajdonos:" HorizontalAlignment="Center" Margin="245,29,545,0" VerticalAlignment="Top" FontSize="20" Width="110"/>
+            <Label Content="Rendszam" HorizontalAlignment="Center" Margin="255,86,545,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Alvazszam:" HorizontalAlignment="Center" Margin="255,137,535,0" VerticalAlignment="Top" FontSize="20" Width="110"/>
+            <Label Content="Tipus" HorizontalAlignment="Center" Margin="272,186,570,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Márka" HorizontalAlignment="Center" Margin="272,242,562,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label x:Name="lbTulajdonosID" Content="" Visibility="Hidden" HorizontalAlignment="Center" Margin="28,305,806,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label x:Name="lbCarID" Content="" Visibility="Hidden" HorizontalAlignment="Center" Margin="28,305,806,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label x:Name="lbTipusID" Content="" Visibility="Hidden" HorizontalAlignment="Center" Margin="28,305,806,0" VerticalAlignment="Top" FontSize="20"/>
+            <Button x:Name="btModifycar" Content="Módosit" Click="btModifySendCar_Click" HorizontalAlignment="Center" Margin="290,355,535,0" VerticalAlignment="Top" Width="75" Background="#FF0E17D4" Foreground="#FFFBFBFB" FontSize="20" BorderThickness="0"/>
+            <Button x:Name="btModifyCancel" Content="Mégse" Click="btCancel_Click" HorizontalAlignment="Center" Margin="459,355,366,0" VerticalAlignment="Top" Width="75" Background="#FF0E17D4" Foreground="#FFFBFBFB" FontSize="20" BorderThickness="0"/>
+            <TextBox  x:Name="tbModifyCarTulajdonos" HorizontalAlignment="Center" Height="23" Margin="398,43,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="tbModifyCarRendszam" HorizontalAlignment="Center" Height="23" Margin="398,100,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox  x:Name="tbModifyCarAlvazszam" HorizontalAlignment="Center" Height="23" Margin="398,151,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="tbModifyCarTipus" HorizontalAlignment="Center" Height="23" Margin="398,200,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+            <TextBox x:Name="tbModifyCarMarka" HorizontalAlignment="Center" Height="23" Margin="398,256,230,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="20" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#FF3CF9F9" Opacity="0.2"/>
+                </TextBox.Background>
+            </TextBox>
+
+        </Grid>
+    </Grid>
+</Window>
