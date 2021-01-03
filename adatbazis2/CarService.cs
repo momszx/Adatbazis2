@@ -22,7 +22,7 @@ namespace adatbazis2
                 using (OracleConnection connection = new OracleConnection(con))
                 {
                     string ID = string.Empty;
-                    string queryString = String.Format("SELECT id,name from Users", username, password);
+                    string queryString = String.Format("SELECT id,name from Users WHERE id = {0} and password={1}", username, password);
                     OracleCommand command = new OracleCommand(queryString, connection);
                     connection.Open();
                     OracleDataReader dataReader = command.ExecuteReader();
